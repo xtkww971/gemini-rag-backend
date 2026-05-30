@@ -16,21 +16,25 @@ java {
 repositories {
 	mavenCentral()
 	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/release' }
 }
 
 dependencyManagement {
 	imports {
-		mavenBom "org.springframework.ai:spring-ai-bom:1.0.0-M1"
+		mavenBom "org.springframework.ai:spring-ai-bom:1.1.0"
 	}
 }
 
 dependencies {
+// 웹 및 롬복 기본 인프라
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-configuration-processor'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
-	implementation 'org.springframework.ai:spring-ai-vertex-ai-gemini-spring-boot-starter'
+	implementation 'org.springframework.ai:spring-ai-starter-model-google-genai'
 
+	// 크로마 벡터 DB 저장소 연동 모듈
 	implementation 'org.springframework.ai:spring-ai-chroma-store'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
